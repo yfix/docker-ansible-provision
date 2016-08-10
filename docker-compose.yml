@@ -1,14 +1,15 @@
-provision:
-  image: yfix/ansible-provision
-  net: host
-  volumes:
-    - /root/.ssh:/hostssh
-  environment:
-    - affinity:container!=*provision*
-
-consul:
-  image: progrium/consul
-  hostname: consul
-  command: -server -bootstrap
-  ports:
-    - "8500:8500"
+version: '2'
+services:
+  provision:
+    image: yfix/ansible-provision
+    net: host
+    volumes:
+      - /root/.ssh:/hostssh
+    environment:
+      - affinity:container!=*provision*
+  consul:
+    image: progrium/consul
+    hostname: consul
+    command: -server -bootstrap
+    ports:
+      - "8500:8500"
